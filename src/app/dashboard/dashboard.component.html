@@ -1,0 +1,40 @@
+<app-header></app-header>
+
+<div class="add">
+    <a (click)="createUser()">
+    <mat-icon>add</mat-icon> Create
+    </a>
+</div>
+
+<table class="custom-table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>subj1_marks</th>
+            <th>subj2_marks</th>
+            <th>subj3_marks</th>
+            <th>subj4_marks</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let studentDetail of studentDetails">
+            <td>{{studentDetail?.id}}</td>
+            <td>{{studentDetail?.name}}</td>
+            <td>{{studentDetail?.age}}</td>
+            <td>{{studentDetail?.subj1_marks}}</td>
+            <td>{{studentDetail?.subj2_marks}}</td>
+            <td>{{studentDetail?.subj3_marks}}</td>
+            <td>{{studentDetail?.subj4_marks}}</td>
+            <td>{{studentDetail?.total}}</td>
+            <td>{{studentDetail?.status}}</td>
+            <td (click)=update(studentDetail)><mat-icon>edit</mat-icon></td>
+            <td (click)="delete(studentDetail)"><mat-icon>delete</mat-icon></td>
+        </tr>
+    </tbody>
+</table>

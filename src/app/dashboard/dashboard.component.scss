@@ -1,0 +1,19 @@
+.custom-table{
+    width: 100%;
+    text-align: center;
+}
+
+.add{
+    text-align: right;
+    padding: 14px 28px 14px 0px;
+    a{
+        background-color: #014479;
+        color: #fff;
+        padding: 7px 11px 7px 6px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .mat-icon{
+        vertical-align: bottom;
+    }
+}
