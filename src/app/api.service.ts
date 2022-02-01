@@ -32,4 +32,7 @@ export class ApiService {
   userById(id:any){
     return this.users.find((x:any)=>x.id==id)
   }
+  updateUser(data:any,id:any){
+    return this.users.push(data,id)
+  }
 }

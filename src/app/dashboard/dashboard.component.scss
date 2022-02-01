@@ -2,9 +2,20 @@
     width: 100%;
     text-align: center;
 }
-
+.custom-table th{
+    position: relative;
+}
+.custom-table .arrow1{
+    position: absolute;
+    top: -7px;
+    cursor: pointer;
+}
+.custom-table .arrow2{
+    position: absolute;
+}
 .add{
-    text-align: right;
+    display: flex;
+    justify-content: space-between;
     padding: 14px 28px 14px 0px;
     a{
         background-color: #014479;

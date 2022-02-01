@@ -16,12 +16,9 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.isloggedIn = localStorage.getItem('loggedIn')
     this.isloggedOut = localStorage.getItem('loggedOut')
-    // if(this.isloggedIn === 'true'){
-    //   this.route.navigate(['dashboard'])
-    // }
-    // else if(this.isloggedOut === 'false'){
-    //   this.route.navigate(['/'])
-    // }
+    if(this.isloggedIn === 'true'){
+      this.route.navigate(['dashboard'])
+    }
     console.log(this.isloggedIn)
     console.log(this.isloggedOut)
     this.loginForm = this.formbuilder.group({

@@ -7,14 +7,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  isloggedOut:any;
 
   constructor(private route:Router) { }
 
   ngOnInit(): void {
+    
   }
  // logout function
  logOut(){
   localStorage.setItem('loggedOut','false')
+  localStorage.removeItem('loggedIn')
   this.route.navigate(['/'])
 
 }
