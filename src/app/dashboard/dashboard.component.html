@@ -1,85 +1,133 @@
 <app-header></app-header>
 
 <div class="add">
-    <div>
-        <mat-form-field appearance="outline">
-            <mat-label>Sorting Total</mat-label>
-            <mat-select (selectionChange)="selectedValue($event)">
-              <mat-option value='high'>High to Low</mat-option>
-              <mat-option value='low'>Low to High</mat-option>
-            </mat-select>
-          </mat-form-field>
-    </div>
-    <div>
-        <mat-form-field appearance="outline">
-            <mat-label>Search Data</mat-label>
-            <input matInput placeholder="Search Data" type="text" [(ngModel)]='valueIn' (keyup)="searchData(valueIn)" placeholder="Search" />
-          </mat-form-field>
-    </div>
-    <div>
-        <a (click)="createUser()">
-            <mat-icon>add</mat-icon> Create
-            </a>
-    </div>
-   
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Sorting Total</mat-label>
+      <mat-select (selectionChange)="selectedValue($event)">
+        <mat-option value="high">High to Low</mat-option>
+        <mat-option value="low">Low to High</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Search Data</mat-label>
+      <input
+        matInput
+        placeholder="Search Data"
+        type="text"
+        [(ngModel)]="valueIn"
+        (keyup)="searchData(valueIn)"
+        placeholder="Search"
+      />
+    </mat-form-field>
+  </div>
+  <div>
+    <a (click)="createUser()"> <mat-icon>add</mat-icon> Create </a>
+  </div>
 </div>
 
 <table class="custom-table">
-    <thead>
-        <tr>
-            <th>Id
-                <mat-icon (click)="asyn('id')">keyboard_arrow_up</mat-icon>
-                <mat-icon (click)="desyn('id')">keyboard_arrow_down</mat-icon>
-            </th>
-            <th>Name
-                <mat-icon (click)="asyn('name')">keyboard_arrow_up</mat-icon>
-                <mat-icon (click)="desyn('name')">keyboard_arrow_down</mat-icon>
-            </th>
-            <th>Age
-                <mat-icon (click)="asyn('age')">keyboard_arrow_up</mat-icon>
-                <mat-icon (click)="desyn('age')">keyboard_arrow_down</mat-icon> 
-            </th>
-            <th>subj1_marks
-                <mat-icon (click)="asyn('subj1_marks')">keyboard_arrow_up</mat-icon>
-                <mat-icon (click)="desyn('subj1_marks')">keyboard_arrow_down</mat-icon> 
-            </th>
-            <th>subj2_marks
-                <mat-icon (click)="asyn('subj2_marks')">keyboard_arrow_up</mat-icon>
-                <mat-icon (click)="desyn('subj2_marks')">keyboard_arrow_down</mat-icon> 
-            </th>
-            <th>subj3_marks
-                <mat-icon (click)="asyn('subj3_marks')">keyboard_arrow_up</mat-icon>
-                <mat-icon (click)="desyn('subj3_marks')">keyboard_arrow_down</mat-icon> 
-            </th>
-            <th>subj4_marks
-                <mat-icon (click)="asyn('subj4_marks')">keyboard_arrow_up</mat-icon>
-                <mat-icon (click)="desyn('subj4_marks')">keyboard_arrow_down</mat-icon> 
-            </th>
-            <th>Total
-                <mat-icon (click)="asyn('total')">keyboard_arrow_up</mat-icon>
-                <mat-icon (click)="desyn('total')">keyboard_arrow_down</mat-icon> 
-            </th>
-            <th>Status
-                <mat-icon (click)="asyn('status')">keyboard_arrow_up</mat-icon>
-                <mat-icon (click)="desyn('status')">keyboard_arrow_down</mat-icon> 
-            </th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let studentDetail of studentDetails">
-            <td>{{studentDetail?.id}}</td>
-            <td>{{studentDetail?.name}}</td>
-            <td>{{studentDetail?.age}}</td>
-            <td>{{studentDetail?.subj1_marks}}</td>
-            <td>{{studentDetail?.subj2_marks}}</td>
-            <td>{{studentDetail?.subj3_marks}}</td>
-            <td>{{studentDetail?.subj4_marks}}</td>
-            <td>{{studentDetail?.total}}</td>
-            <td>{{studentDetail?.status}}</td>
-            <td (click)="update(studentDetail)"><mat-icon>edit</mat-icon></td>
-            <td (click)="delete(studentDetail)"><mat-icon>delete</mat-icon></td>
-        </tr>
-    </tbody>
+  <thead>
+    <tr>
+      <th>
+        Id
+        <mat-icon (click)="asyn('id')">keyboard_arrow_up</mat-icon>
+        <mat-icon (click)="desyn('id')">keyboard_arrow_down</mat-icon>
+      </th>
+      <th>
+        Name
+        <mat-icon (click)="asyn('name')">keyboard_arrow_up</mat-icon>
+        <mat-icon (click)="desyn('name')">keyboard_arrow_down</mat-icon>
+      </th>
+      <th>
+        Age
+        <mat-icon (click)="asyn('age')">keyboard_arrow_up</mat-icon>
+        <mat-icon (click)="desyn('age')">keyboard_arrow_down</mat-icon>
+      </th>
+      <th>
+        subj1_marks
+        <mat-icon (click)="asyn('subj1_marks')">keyboard_arrow_up</mat-icon>
+        <mat-icon (click)="desyn('subj1_marks')">keyboard_arrow_down</mat-icon>
+      </th>
+      <th>
+        subj2_marks
+        <mat-icon (click)="asyn('subj2_marks')">keyboard_arrow_up</mat-icon>
+        <mat-icon (click)="desyn('subj2_marks')">keyboard_arrow_down</mat-icon>
+      </th>
+      <th>
+        subj3_marks
+        <mat-icon (click)="asyn('subj3_marks')">keyboard_arrow_up</mat-icon>
+        <mat-icon (click)="desyn('subj3_marks')">keyboard_arrow_down</mat-icon>
+      </th>
+      <th>
+        subj4_marks
+        <mat-icon (click)="asyn('subj4_marks')">keyboard_arrow_up</mat-icon>
+        <mat-icon (click)="desyn('subj4_marks')">keyboard_arrow_down</mat-icon>
+      </th>
+      <th>
+        Total
+        <mat-icon (click)="asyn('total')">keyboard_arrow_up</mat-icon>
+        <mat-icon (click)="desyn('total')">keyboard_arrow_down</mat-icon>
+      </th>
+      <th>
+        Status
+        <mat-icon (click)="asyn('status')">keyboard_arrow_up</mat-icon>
+        <mat-icon (click)="desyn('status')">keyboard_arrow_down</mat-icon>
+      </th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let studentDetail of studentDetails">
+      <td>{{ studentDetail?.id }}</td>
+      <td>{{ studentDetail?.name }}</td>
+      <td>{{ studentDetail?.age }}</td>
+      <td>{{ studentDetail?.subj1_marks }}</td>
+      <td>{{ studentDetail?.subj2_marks }}</td>
+      <td>{{ studentDetail?.subj3_marks }}</td>
+      <td>{{ studentDetail?.subj4_marks }}</td>
+      <td>{{ studentDetail?.total }}</td>
+      <td>{{ studentDetail?.status }}</td>
+      <td (click)="update(studentDetail)"><mat-icon>edit</mat-icon></td>
+      <td (click)="delete(studentDetail)"><mat-icon>delete</mat-icon></td>
+    </tr>
+  </tbody>
 </table>
+
+<h1>Dynamic Form Array</h1>
+
+<form [formGroup]="dynamicForm">
+    <div formArrayName="newData">
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Name" formControlName="name" />
+      <mat-error *ngIf="dynamicForm.get('name').hasError('required')"
+        >Please Enter User Name</mat-error
+      >
+    </mat-form-field>
+  </p>
+  <p *ngFor="let newdata of getnewData(); let i=index">
+    <mat-form-field appearance="outline">
+      <mat-label>Last Name</mat-label>
+      <input matInput placeholder="Name" [formControlName]="i" id="newdata{{ i }}"/>
+    </mat-form-field>
+  </p>
+
+<div >
+  <p>
+    <a (click)="dynamicAdd()"> <mat-icon>add</mat-icon> Add </a>
+  </p>
+  <p>
+    <a (click)="dynamicRemove('i')"> <mat-icon>remove</mat-icon> remove </a>
+  </p>
+</div>
+</div>
+<!-- <div *ngFor="let newdata of newData.controls; let i=index">
+    <input type="text" [formControlName]="i" id="newdata-{{ i }}">
+
+</div> -->
+</form>

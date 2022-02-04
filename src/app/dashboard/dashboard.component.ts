@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 
@@ -12,13 +13,23 @@ export class DashboardComponent implements OnInit {
   valueIn:any;
   searchTable: any;
   selectedValues: any;
-  constructor(private route:Router,private apiservice:ApiService) { }
+  dynamicForm:any;
+  // newData:any;
+  constructor(private route:Router,private apiservice:ApiService,
+    private formbuilder:FormBuilder,) { }
 
   ngOnInit(): void {
   
     this.studentDetails = this.apiservice.getUser()
     console.log(this.studentDetails)
     this.searchTable = this.studentDetails
+    this.dynamicForm = this.formbuilder.group({
+      name:['',Validators.required],
+      last:['',Validators.required],
+      newData: this.formbuilder.array([
+        this.formbuilder.control('')
+      ])
+    })
   }
  
 
@@ -75,15 +86,30 @@ asyn(data:any){
   let value = data
   console.log(value)
   this.studentDetails.sort((a:any,b:any)=>{
-    return typeof value =='string' ? b[value] - a[value] : b[value].localeCompare(a[value]) 
+    return typeof a[value] ==='number' ? b[value] - a[value] : b[value].localeCompare(a[value]) 
   })
 }
 desyn(data:any){
   let value = data
   console.log(value)
   this.studentDetails.sort((a:any,b:any)=>{
-    return typeof value ==='string' ? a[value] - b[value] : a[value].localeCompare(b[value])
+    return typeof a[value] ==='number' ? a[value] - b[value] : a[value].localeCompare(b[value])
   })
 }
 // table column search
+
+// dynamic forms
+dynamicAdd(){
+  this.newData.push(this.formbuilder.control(''))
+}
+dynamicRemove(index:any){
+  this.newData.removeAt(index)
+}
+get newData(){
+  return this.dynamicForm.get('newData') as FormArray;
+}
+getnewData(){
+  return this.dynamicForm.get('newData').controls;
+}
+// dynamic forms
 }
