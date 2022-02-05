@@ -23,7 +23,8 @@ export class LoginComponent implements OnInit {
     console.log(this.isloggedOut)
     this.loginForm = this.formbuilder.group({
       name:['',Validators.required],
-      password:['',Validators.required]
+      password:['',Validators.required],
+      addPhoneNumber:this.formbuilder.array([])
     })
   }
   loginSubmit(){

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 
@@ -13,25 +13,34 @@ export class DashboardComponent implements OnInit {
   valueIn:any;
   searchTable: any;
   selectedValues: any;
-  dynamicForm:any;
+  dynamicForm:FormGroup;
+  searchInput:FormControl
   // newData:any;
   constructor(private route:Router,private apiservice:ApiService,
-    private formbuilder:FormBuilder,) { }
+    private formbuilder:FormBuilder,) { 
+      this.dynamicForm = this.formbuilder.group({
+        // name:['',Validators.required],
+        // last:['',Validators.required],
+        newData: this.formbuilder.array([
+          
+        ])
+      })
+      this.searchInput = new FormControl('test')
+    }
 
   ngOnInit(): void {
   
     this.studentDetails = this.apiservice.getUser()
     console.log(this.studentDetails)
     this.searchTable = this.studentDetails
-    this.dynamicForm = this.formbuilder.group({
-      name:['',Validators.required],
-      last:['',Validators.required],
-      newData: this.formbuilder.array([
-        this.formbuilder.control('')
-      ])
-    })
+    
+    this.dynamicAdd();
   }
- 
+  dynamicData(){
+    if(this.dynamicForm.valid){
+      console.log(this.dynamicForm.value)
+    }
+  }
 
   // user create function
     createUser(){
@@ -58,6 +67,7 @@ export class DashboardComponent implements OnInit {
   // search function
   searchData(data:any){
     console.log(data)
+    console.log(this.searchInput)
     this.studentDetails = this.searchTable.filter((e:any)=>{
       if(String(e.id).includes(data) || e.first.includes(data)
       ||e.last.includes(data)|| String(e.age).includes(data)
@@ -100,16 +110,20 @@ desyn(data:any){
 
 // dynamic forms
 dynamicAdd(){
-  this.newData.push(this.formbuilder.control(''))
+  this.newData.push(this.formbuilder.group({
+    fname:[''],
+    lname:[]
+  }))
 }
-dynamicRemove(index:any){
+dynamicRemove(index:number){
+  console.log(index)
   this.newData.removeAt(index)
 }
 get newData(){
   return this.dynamicForm.get('newData') as FormArray;
 }
-getnewData(){
-  return this.dynamicForm.get('newData').controls;
-}
+// getnewData(){
+//   return this.dynamicForm.get('newData').controls;
+// }
 // dynamic forms
 }
